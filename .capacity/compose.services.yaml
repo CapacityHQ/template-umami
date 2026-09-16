@@ -1,0 +1,22 @@
+# Local services Capacity Desktop starts before the app: the Postgres that
+# Umami's DATABASE_URL in .env.example points at. The health check is
+# load-bearing — `docker compose up --wait` only waits on what a service
+# declares, and check-db runs the moment the services report healthy.
+services:
+  postgres:
+    image: postgres:16
+    environment:
+      POSTGRES_USER: umami
+      POSTGRES_PASSWORD: umami
+      POSTGRES_DB: umami
+    ports:
+      - "5432:5432"
+    volumes:
+      - umami_pg:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U umami -d umami"]
+      interval: 2s
+      timeout: 3s
+      retries: 30
+volumes:
+  umami_pg:

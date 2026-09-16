@@ -52,3 +52,6 @@ yarn-error.log*
 *.env.*
 
 *.dev.yml
+
+# Capacity: the committed example is the template of the generated .env
+!.env.example

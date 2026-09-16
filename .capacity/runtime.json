@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "apps": [
+    { "id": "web", "name": "Umami", "primary": true, "cwd": ".", "command": "pnpm dev" }
+  ],
+  "services": [
+    { "id": "db", "composeFile": ".capacity/compose.services.yaml" }
+  ],
+  "setup": [
+    { "id": "db-setup", "command": "pnpm build-db && pnpm check-db" },
+    { "id": "tracker-build", "command": "pnpm build-tracker && pnpm build-recorder" }
+  ]
+}
