@@ -17,8 +17,12 @@ test.describe('Login tests', () => {
   });
 
   test('shows validation for blank inputs or incorrect credentials', async ({ page }) => {
+    // The dev-mode notice prefills the form, so clear it before checking validation.
+    await page.getByTestId('input-username').locator('input').fill('');
+    await page.getByTestId('input-password').locator('input').fill('');
     await page.getByTestId('button-submit').click();
-    await expect(page.getByText(/Required/i)).toBeVisible();
+    await expect(page.getByTestId('input-username').getByText(/Required/i)).toBeVisible();
+    await expect(page.getByTestId('input-password').getByText(/Required/i)).toBeVisible();
 
     await page.getByTestId('input-username').locator('input').fill(umamiUser.username);
     await page.getByTestId('input-password').locator('input').fill('wrongpassword');
