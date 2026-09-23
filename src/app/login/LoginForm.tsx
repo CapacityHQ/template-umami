@@ -13,7 +13,13 @@ import { useRouter } from 'next/navigation';
 import { useMessages, useUpdateQuery } from '@/components/hooks';
 import { Logo } from '@/components/svg';
 import { setClientAuthToken } from '@/lib/client';
+import { DEV_DEFAULT_PASSWORD, DEV_DEFAULT_USERNAME, IS_DEVELOPMENT } from '@/lib/constants';
 import { setUser } from '@/store/app';
+import { DevModeNotice } from './DevModeNotice';
+
+const defaultValues = IS_DEVELOPMENT
+  ? { username: DEV_DEFAULT_USERNAME, password: DEV_DEFAULT_PASSWORD }
+  : undefined;
 
 export function LoginForm() {
   const { t, labels, getErrorMessage } = useMessages();
@@ -41,7 +47,12 @@ export function LoginForm() {
         <Logo />
       </Icon>
       <Heading>umami</Heading>
-      <Form onSubmit={handleSubmit} error={getErrorMessage(error)} style={{ minWidth: 300 }}>
+      <Form
+        onSubmit={handleSubmit}
+        error={getErrorMessage(error)}
+        defaultValues={defaultValues}
+        style={{ minWidth: 300 }}
+      >
         <FormField
           label={t(labels.username)}
           data-test="input-username"
@@ -70,6 +81,7 @@ export function LoginForm() {
           </FormSubmitButton>
         </FormButtons>
       </Form>
+      <DevModeNotice />
     </Column>
   );
 }
