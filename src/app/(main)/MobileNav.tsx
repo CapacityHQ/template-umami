@@ -8,6 +8,7 @@ import { MobileMenuButton } from '@/components/input/MobileMenuButton';
 import { UserButton } from '@/components/input/UserButton';
 import { Logo } from '@/components/svg';
 import { AdminNav } from './admin/AdminNav';
+import { DocsCta } from './DocsCta';
 import { SettingsNav } from './settings/SettingsNav';
 
 export function MobileNav() {
@@ -63,9 +64,12 @@ export function MobileNav() {
               {websiteId && <WebsiteNav websiteId={websiteId} onItemClick={close} />}
               {isAdmin && <AdminNav onItemClick={close} />}
               {isSettings && <SettingsNav onItemClick={close} />}
-              <Row style={{ marginTop: 'auto' }}>
-                <UserButton onClose={close} />
-              </Row>
+              <Column gap="2" style={{ marginTop: 'auto' }}>
+                <DocsCta />
+                <Row>
+                  <UserButton onClose={close} />
+                </Row>
+              </Column>
             </Column>
           );
         }}

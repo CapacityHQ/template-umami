@@ -1,0 +1,42 @@
+/* Blue shades follow the Tailwind blue scale that --primary (blue-500) is taken from. */
+.cta {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  min-height: 40px;
+  border: 1px solid #bfdbfe;
+  border-radius: var(--radius-default);
+  background: #eff6ff;
+  color: #1d4ed8;
+  text-decoration: none;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.cta:hover {
+  background: #dbeafe;
+  border-color: #93c5fd;
+}
+
+.collapsed {
+  justify-content: center;
+}
+
+.label {
+  color: #1d4ed8;
+}
+
+:global([data-theme="dark"]) .cta {
+  border-color: rgba(59, 130, 246, 0.35);
+  background: rgba(59, 130, 246, 0.12);
+  color: #93c5fd;
+}
+
+:global([data-theme="dark"]) .cta:hover {
+  background: rgba(59, 130, 246, 0.18);
+  border-color: rgba(59, 130, 246, 0.5);
+}
+
+:global([data-theme="dark"]) .label {
+  color: #bfdbfe;
+}

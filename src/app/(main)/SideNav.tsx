@@ -9,6 +9,7 @@ import {
   TooltipTrigger,
 } from '@umami/react-zen';
 import { AdminNav } from '@/app/(main)/admin/AdminNav';
+import { DocsCta } from '@/app/(main)/DocsCta';
 import { SettingsNav } from '@/app/(main)/settings/SettingsNav';
 import { WebsiteNav } from '@/app/(main)/websites/[websiteId]/WebsiteNav';
 import { IconLabel } from '@/components/common/IconLabel';
@@ -149,14 +150,12 @@ export function SideNav(props: any) {
           </Column>
         )}
       </OverlayScrollArea>
-      <Row
-        paddingTop="2"
-        width="100%"
-        justifyContent={isCollapsed ? 'center' : undefined}
-        style={{ flexShrink: 0 }}
-      >
-        <UserButton showText={!isCollapsed} />
-      </Row>
+      <Column gap="2" paddingTop="2" width="100%" style={{ flexShrink: 0 }}>
+        <DocsCta isCollapsed={isCollapsed} />
+        <Row width="100%" justifyContent={isCollapsed ? 'center' : undefined}>
+          <UserButton showText={!isCollapsed} />
+        </Row>
+      </Column>
     </Column>
   );
 }
